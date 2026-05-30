@@ -1,0 +1,19 @@
+# Output di compilazione N64
+*.z64
+*.v64
+*.n64
+*.elf
+*.o
+*.d
+*.bin
+*.dfs
+
+# Cartelle di build e strumenti di sistema
+build/
+filesystem/
+.build/
+
+# File di configurazione di VS Code locali (opzionale, ma consigliato)
+.vscode/cmake-variants.json
+.vscode/ipch/
+.DS_Store
