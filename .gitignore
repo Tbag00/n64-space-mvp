@@ -17,3 +17,4 @@ filesystem/
 .vscode/cmake-variants.json
 .vscode/ipch/
 .DS_Store
+.clangd
