@@ -1,5 +1,6 @@
 // per iniziare facciamo un cerchio bianco come framebuffer
 #include "display.h"
+#include "dragonfs.h"
 #include "rdpq.h"
 #include "rdpq_font.h"
 #include "rdpq_mode.h"
@@ -23,18 +24,17 @@ static filter_options_t filters = FILTERS_RESAMPLE;
 
 int main(void) {
 
+  display_init(res, bit, num_buffers, GAMMA_NONE, filters);
+  rdpq_init();
+  joypad_init();
+  dfs_init(DFS_DEFAULT_LOCATION);
+
   joypad_inputs_t inputs;
 
   /*ship*/
   point_t ship_position = {0, 0};
   sprite_t* ship = sprite_load("rom:/ship.sprite");
   int speed = 10;
-
-  /*display*/
-  display_init(res, bit, num_buffers, GAMMA_NONE, filters);
-  rdpq_init();
-
-  joypad_init();
 
   /*testo per debug temporaneo*/
   rdpq_font_t *pfont = rdpq_font_load_builtin(FONT_BUILTIN_DEBUG_MONO);
@@ -53,7 +53,6 @@ int main(void) {
     ship_position.x = (ship_position.x % 256 + 256) % 256;
     ship_position.y = (ship_position.y % 240 + 240) % 240;
 
-    rdpq_set_mode_copy(true);
     rdpq_sprite_blit(ship, ship_position.x, ship_position.y,NULL);
 
     // test
